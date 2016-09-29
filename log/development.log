@@ -7257,3 +7257,77 @@ Completed 200 OK in 163ms (Views: 162.3ms | ActiveRecord: 0.0ms)
 
 
 Started GET "/assets/welcome_splash.jpg" for 127.0.0.1 at 2016-09-29 14:02:28 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-29 15:12:25 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (7.7ms)
+  Rendered application/_nav_basic.html.erb (3.5ms)
+  Rendered application/_footer_basic.html.erb (0.5ms)
+Completed 200 OK in 786ms (Views: 778.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-09-29 15:12:26 -0700
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (0.2ms)
+  Rendered application/_nav_basic.html.erb (0.4ms)
+  Rendered application/_footer_basic.html.erb (0.0ms)
+Completed 200 OK in 239ms (Views: 238.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/welcome_splash.jpg" for 127.0.0.1 at 2016-09-29 15:12:26 -0700
+
+
+Started GET "/register" for 127.0.0.1 at 2016-09-29 15:12:28 -0700
+Processing by CompaniesController#new as HTML
+  Rendered companies/new.html.erb within layouts/application (0.9ms)
+  Rendered application/_nav_basic.html.erb (3.4ms)
+  Rendered application/_footer_basic.html.erb (0.4ms)
+Completed 200 OK in 154ms (Views: 153.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/companies" for 127.0.0.1 at 2016-09-29 15:17:06 -0700
+Processing by CompaniesController#create as HTML
+  Parameters: {"authenticity_token"=>"ppfni6A6GLo5/UuntkcrF+7GaYGxb3cPFe73Qua4XxGfoc7sfjSBTpq6nMjQe7R0AsdUO74xQebl3Ne8My3lww==", "company"=>{"name"=>"test", "email"=>"test123213213@test.com", "phone"=>"123", "address_line1"=>"test", "address_line2"=>"", "city"=>"test", "state"=>"AK", "zip"=>"92919", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mCompany Exists (1.3ms)[0m  [1mSELECT  1 AS one FROM "companies" WHERE LOWER("companies"."email") = LOWER('test123213213@test.com') LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 272ms (ActiveRecord: 4.3ms)
+
+ActionView::MissingTemplate (Missing template companies/back, application/back with {:locale=>[:en], :formats=>[:html], :variants=>[], :handlers=>[:erb, :builder, :raw, :ruby, :coffee, :jbuilder]}. Searched in:
+  * "/home/gkwong85/Ruby_Project/PayMe/app/views"
+):
+  app/controllers/companies_controller.rb:20:in `create'
+
+
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (12.9ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (11.2ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/missing_template.html.erb within rescues/layout (62.2ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (32.8ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (2.0ms)
+  Rendered /home/gkwong85/.rvm/gems/ruby-2.2.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (74.4ms)
+
+
+Started POST "/companies" for 127.0.0.1 at 2016-09-29 15:18:20 -0700
+Processing by CompaniesController#create as HTML
+  Parameters: {"authenticity_token"=>"i6W6IAmMbdaB4MuJhbcOY2VP9CmFXQTwZF89cJvyfj2yk5NH14L0IiKnHObji5EAiU7Jk4oDMhmUbR2OTmfE7w==", "company"=>{"name"=>"test", "email"=>"test123213213@test.com", "phone"=>"123", "address_line1"=>"test", "address_line2"=>"", "city"=>"test", "state"=>"AK", "zip"=>"92919", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mCompany Exists (0.3ms)[0m  SELECT  1 AS one FROM "companies" WHERE LOWER("companies"."email") = LOWER('test123213213@test.com') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mROLLBACK[0m
+Redirected to http://localhost:3000/register
+Completed 302 Found in 134ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/register" for 127.0.0.1 at 2016-09-29 15:18:20 -0700
+Processing by CompaniesController#new as HTML
+  Rendered companies/new.html.erb within layouts/application (5.4ms)
+  Rendered application/_nav_basic.html.erb (0.1ms)
+  Rendered application/_footer_basic.html.erb (0.0ms)
+Completed 200 OK in 157ms (Views: 155.6ms | ActiveRecord: 0.0ms)
