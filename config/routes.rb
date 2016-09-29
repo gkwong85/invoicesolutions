@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   post 'invoices/update' => 'invoices#update'
   delete '/invoices/:id' => 'invoices#deleteInvoice'
   delete 'unpaid_invoices/:id' => 'invoice#deleteUnpaidInvoice'
-  get '/register' => 'companies#new', as: :this_new_company
+  get '/register' => 'companies#new'
   get 'clients/:id' => 'clients#show'
   delete '/sessions' => 'sessions#destroy'
   resources :sessions
