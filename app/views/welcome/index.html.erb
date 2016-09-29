@@ -1,0 +1,51 @@
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+  </div>
+    <div class="jumbotron" id="welcome_splash">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 style="font-weight: 900">PayME</h1>
+            <p>
+              Track clients.<br />
+              Create invoices.<br />
+              Get paid easily.<br />
+              
+
+              <% if session[:client_id] %>
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="/clients" role="button">Back to Client Dashboard</a></p>
+              <% elsif session[:company_id] %>
+                </p>
+                <p><a class="btn btn-primary btn-lg" href="/companies" role="button">Back to Company Dashboard</a></p>
+              <% else %>
+                Join Today!</p>
+                <p><a class="btn btn-primary btn-lg" href="/register" role="button">Register Now &raquo;</a></p>
+              <% end %>
+
+            <!-- <p><a class="btn btn-default btn-lg" href="#" role="button">Log In &raquo;</a></p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Invoicing</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+        <div class="col-md-4">
+          <h2>Tracking</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+       </div>
+        <div class="col-md-4">
+          <h2>Stripe Payments</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <!-- <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p> -->
+        </div>
+      </div>
+
+

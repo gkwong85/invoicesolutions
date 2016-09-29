@@ -1,0 +1,125 @@
+<% if session[:company_id] %>
+	<ol class="breadcrumb">
+		<li><a href="/companies">Company Dashboard</a></li>
+		<li class="active">Client Info</li>
+	</ol>
+<% elsif session[:client_id] %>
+		<ol class="breadcrumb">
+		<li class="active">Client Dashboard</li>
+	</ol>
+<% end %>
+
+<h1 class="text-center">
+	<% if session[:company_id] %>
+		Client Info: 
+	<% elsif session[:client_id] %>
+		Welcome 
+	<% end %>
+
+	<%= @client.name %></h1>
+
+	<% if session[:client_id] %>
+	  <div class="row">
+	  	<div class="col-md-12 text-center">
+			<a href="/clients/<%= @client.id %>/edit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit My Info</a> 
+
+			<a href="/clients/reports" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span> Reports</a> 
+		</div>
+	  </div>
+	<% end %>
+
+	<h4>Mailing Address:</h4>
+	<address>
+		<%= @client.name %><br />
+		<%= @client.address_line1 + " " + @client.address_line2%><br />	
+		<%= @client.city %>, <%= @client.state %> <%= @client.zip %>
+	</address>
+
+
+
+	<% if session[:company_id] %>
+		<h3>Outstanding Invoices</h3>
+	<% else %>
+		<h3>Outstanding Invoices for <%= @client.company.name %></h3>
+	<% end %>
+	<% if @out == [] %>
+		<h4>You currently have no outstanding invoices</h4>
+	<% else %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Invoice #</th>
+				<th>Send Date</th>
+				<th>Due Date</th>
+				<th>Description</th>
+				<th>Amount</th>
+				<th>Payment Method</th>
+			</tr>
+		</thead>
+		<tbody>
+		<% if  %>
+			<% @out.each do |out| %>
+				<tr>
+					<td><a href="/clients/invoices/<%= out.id %>"><%= out.id %> <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> </a></td>
+					<td><%= out.sendDate.to_formatted_s(:mo_day_year)%></td>
+					<td><%= out.due_by.to_formatted_s(:mo_day_year)%></td>
+					<td><%= out.description %></td>
+					<td><%= number_to_currency(out.amount) %></td>
+					<td class="text-right">
+						<form action="/charges/new" style="display: inline-block">
+							<input type="hidden" name="invoice_id" value="<%= out.id %>">
+							<input type="hidden" name="invoice_amt" value="<%= out.amount %>">
+							<button type="submit" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Credit Card</button>
+						</form>
+						<a class="btn btn-info btn-sm"
+
+						<% if session[:client_id] %>
+						  onclick="alert('Please print out your invoice and mail it to us with your check payment.');" 
+						  <% @folder_root = '/clients' %>
+						<% end %> href="<%= @folder_root %>/invoices/<%=out.id %>" ><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Check</a>
+					</td>
+				</tr>
+			<% end %>
+		<% end %>
+		</tbody>
+	</table>
+	<% end %>
+
+	<% if session[:company_id] %>
+		<h3>Paid Invoices</h3>
+	<% else %>
+		<h3>Paid Invoices for <%= @client.company.name %></h3>
+	<% end %>
+	<% if @paid == [] %>
+		<h4>You currently have no paid invoices</h3>
+	<% else %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Invoice #</th>
+				<th>Paid Date</th>
+				<th>Description</th>
+				<th>Amount</th>
+				<th>Paid By</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<% @paid.each do |paid| %>
+				<tr>
+					<td><a href="/clients/invoices/<%= paid.id %>"><%= paid.id %> <span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> </a></td>
+					<td><%= paid.paid_date.to_formatted_s(:mo_day_year) %></td>
+					<td><%= paid.description %></td>
+					<td><%= number_to_currency(paid.amount) %></td>
+					<td>
+						<% if paid.check_payment %>
+							<span class="label label-info">Check #:</span> <%= paid.check_payment %>
+						<% elsif paid.stripe_payment %>
+							<span class="label label-info">Stripe ID:</span> <%= paid.stripe_payment %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<% end %>

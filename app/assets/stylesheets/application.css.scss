@@ -1,0 +1,112 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+
+
+.jumbotron {
+	text-align: center
+}
+
+#welcome_splash {
+	min-height: 450px;
+	font-weight: bold;
+	background-image: url('welcome_splash.jpg');
+	background-size:     cover;                      
+    background-repeat:   no-repeat;
+    background-position: center bottom;
+}
+
+footer {
+	text-align: center
+}
+
+.light-text {
+	color: white
+}
+
+.text-login {
+	padding-right: 1em;
+	color: #CCC;
+}
+
+.breadcrumb {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.navbar-brand {
+	font-weight: bold;
+	letter-spacing: 1px;
+}
+
+
+
+.btn-print {
+	background-color: #AAA;
+	color: #FFF;
+}
+
+#print_wrapper {
+	border: 1px solid #CCC;
+	padding: 4em;
+	margin-top: 2em;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print_wrapper, #print_wrapper * {
+    visibility: visible;
+  }
+  #print_wrapper {
+  	position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    width: 100%;
+  }
+
+  a[href]:after {
+    content: none !important;
+  }
+
+	.glyph{
+	    display:none;
+	}
+
+
+  #print_reports, #print_reports * {
+    visibility: visible;
+  }
+
+  #print_reports {
+  	position: absolute;
+    left: 0;
+    top: 0;
+    border: 0;
+    width: 100%;
+  }
+
+ 
+}

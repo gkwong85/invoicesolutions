@@ -1,0 +1,36 @@
+<% if session[:company_id] %>
+	<ol class="breadcrumb">
+		<li><a href="/companies">Company Dashboard</a></li>
+		<li class="active">Edit Invoice </li>
+	</ol>
+<% end %>
+
+
+
+<h1 class="text-center">Edit Invoice #<%= @invoice.id %> for client: <%= @invoice.client.name %></h1>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+
+		<form action="/invoices/update" method="post">
+			<%= token_tag nil %>
+			<input type="hidden" name="invoice_id" class="form-control" value="<%= @invoice.id %>">
+			<div class="form-group">
+			<label>Amount: </label>
+				<input type="float" name="amt" step="0.01" class="form-control" value="<%= @invoice.amount %>">
+			</div>
+			<div class="form-group">
+			<label>Description: </label>
+				<input type="text" name="description" class="form-control" value="<%= @invoice.description %>">
+			</div>
+			<div class="form-group">
+				<label>Due Date: </label>
+
+				<input type="text" name="due" class="form-control" value="<%= @invoice.due_by.to_formatted_s(:month_day_year) %>">
+			</div>
+			<div class="form-group">
+				<button class="center-block btn btn-lg btn-success">Update Invoice <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,114 @@
+<% if session[:company_id] %>
+  <ol class="breadcrumb">
+    <li><a href="/companies">Company Dashboard</a></li>
+    <li class="active">Invoice #<%= params[:id] %></li>
+  </ol>
+<% elsif session[:client_id] %>
+    <ol class="breadcrumb">
+    <li><a href="/clients">Client Dashboard</a></li>
+    <li class="active">Invoice #<%= params[:id] %></li>
+  </ol>
+<% end %>
+
+<h1 class="text-center">Invoice #<%= @invoice.id %> View</h1>
+
+<div class="row text-center">
+  <div class="col-md-12">
+
+    <a href="#" onclick="window.print();return false;" class="btn btn-print btn-lg" type="button"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print Invoice</a>
+
+    <% if @invoice.paid_date == nil %>
+      <% if session[:client_id] %>
+
+        <form action="/charges/new" style="display: inline-block">
+          <input type="hidden" name="invoice_id" value="<%= @invoice.id %>">
+          <input type="hidden" name="invoice_amt" value="<%= @invoice.amount %>">
+          <button type="submit" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Pay By Credit Card</button>
+        </form>
+      <% end %>
+      
+      <button class="btn btn-info btn-lg" 
+        onclick="alert('Please print out your invoice and mail it to us with your check payment.');" 
+      > <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pay By Check</button>
+      
+    </div>
+
+    <% end %>
+  </div>
+
+<div id="print_wrapper" class="col-md-10 col-md-offset-1">
+  <h1 class="text-center">INVOICE</h1>
+
+  <div class="row" >
+    <div class="col-md-6" style="display:inline-block">
+      <h5>From:</h5>
+      <address>
+        <strong><%= @invoice.company.name %></strong><br />
+        <%= @invoice.company.address_line1 %><br />  
+        <% if @invoice.company.address_line2 != "" %>
+          <%= @invoice.company.address_line2 %><br />
+        <% end %>
+        <%= @invoice.company.city %>, <%= @invoice.company.state %> <%= @invoice.company.zip %><br />
+        <%= @invoice.company.email %><br /> 
+        <%= @invoice.company.phone %><br /> 
+      </address>
+    </div>
+
+    <div class="col-md-4 col-md-offset-2" style="display:inline-block; float: right">
+      <h5 style="font-weight:bold">Invoice # <%= @invoice.id %></h5>
+      <strong>Send Date:</strong> <%= @invoice.sendDate.to_formatted_s(:long) %><br />
+      <strong>Due Date:</strong> <%= @invoice.due_by.to_formatted_s(:long) %><br />
+    </div>
+  </div>
+
+  <div class="row" >
+    <div class="col-md-6" style="display: inline-block">
+      <h5>Bill To:</h5>
+      <address>
+        <strong><%= @invoice.client.name %></strong><br />
+        <%= @invoice.client.address_line1 %><br />  
+        <% if @invoice.client.address_line2 != "" %>
+          <%= @invoice.client.address_line2 %><br />
+        <% end %>
+        <%= @invoice.client.city %>, <%= @invoice.client.state %> <%= @invoice.client.zip %><br />
+      </address>
+    </div>
+
+    <div class="col-md-6" style="display:inline-block; float: right">
+      <% if @invoice.paid_date %>
+      <div style="border: 3px solid darkgreen; color: darkgreen; border-radius: 10px; text-align: center; padding: .5em; font-size: xx-large; background-color: lightgreen">
+        PAID on <br />
+        <%= @invoice.paid_date.to_formatted_s(:long) %></div>
+      <% end %>
+    </div>
+
+</div>
+    <h4 class="text-center">Invoice Item</h4>
+
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 80%; background-color: #CCC">Item Description</th>
+              <th style="width: 20%; background-color: #CCC">Total Price</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><%= @invoice.description %></td>
+              <td><%= number_to_currency(@invoice.amount) %></td>
+            </tr>
+            <tr style="font-size: large; font-weight: bold">
+              <td class="text-right">TOTAL DUE:</td>
+              <td><%= number_to_currency(@invoice.amount) %></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h5 class="text-center">Thank you for using <%= @invoice.company.name %></h5>
+      </div>
+    </div>
+  </div>
+</div>
