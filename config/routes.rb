@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
   post 'clients/create' => 'clients#create'
+  get '/register' => 'companies#new', as: :this_new_company
   get 'clients' => 'clients#show'
   get 'companies/clients/new' => 'clients#new'
   delete 'companies/clients/:id' => 'clients#destroy'
@@ -28,7 +29,6 @@ Rails.application.routes.draw do
   post 'invoices/update' => 'invoices#update'
   delete '/invoices/:id' => 'invoices#deleteInvoice'
   delete 'unpaid_invoices/:id' => 'invoice#deleteUnpaidInvoice'
-  get '/register' => 'companies#new'
   get 'clients/:id' => 'clients#show'
   delete '/sessions' => 'sessions#destroy'
   resources :sessions
