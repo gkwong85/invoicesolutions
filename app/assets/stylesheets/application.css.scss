@@ -30,7 +30,7 @@ body {
 #welcome_splash {
 	min-height: 450px;
 	font-weight: bold;
-	background-image: image-url('welcome_splash.jpg');
+	background-image: asset-url('welcome_splash.jpg');
 	background-size:     cover;                      
     background-repeat:   no-repeat;
     background-position: center bottom;
