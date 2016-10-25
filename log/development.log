@@ -7331,3 +7331,15 @@ Processing by CompaniesController#new as HTML
   Rendered application/_nav_basic.html.erb (0.1ms)
   Rendered application/_footer_basic.html.erb (0.0ms)
 Completed 200 OK in 157ms (Views: 155.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2016-10-24 18:59:45 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendered welcome/index.html.erb within layouts/application (1.5ms)
+  Rendered application/_nav_basic.html.erb (2.7ms)
+  Rendered application/_footer_basic.html.erb (0.3ms)
+Completed 200 OK in 590ms (Views: 568.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/welcome_splash.jpg" for 127.0.0.1 at 2016-10-24 18:59:46 -0700
